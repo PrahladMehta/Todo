@@ -1,0 +1,110 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-primary: #4566ec;
+  --color-primary-hover: #3a58d8;
+  --color-primary-deep: #1c3082;
+  --color-primary-track: #dde3fb;
+  --color-primary-soft: #edf0fd;
+
+  --color-danger: #e8505b;
+  --color-danger-soft: #fdecec;
+
+  --color-ink: #1b1b2f;
+  --color-ink-soft: #3f3f5a;
+  --color-muted: #8e8ea9;
+  --color-line: #eaeaf2;
+  --color-surface: #ffffff;
+  --color-canvas: #fdfdff;
+
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-sheet: 1.25rem;
+
+  --shadow-fab: 0 12px 24px -6px rgb(69 102 236 / 0.55);
+  --shadow-sheet: 0 -12px 40px -12px rgb(27 27 47 / 0.25);
+  --shadow-card: 0 2px 12px -4px rgb(27 27 47 / 0.08);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator,
+  input[type='time']::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  input[type='date'],
+  input[type='time'] {
+    position: relative;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@utility animate-sheet-up {
+  animation: sheet-up 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
